@@ -17,8 +17,14 @@ The core engine of BabydollAI natively targets the **OpenAI GPT-5.6 production e
 ### 3. Resilience Fallback Pipeline
 To ensure high-frequency community testing could execute without hitting real-time production quota limitations, a hybrid configuration switcher was engineered. The runtime allows judges to plug in credentials to test the flagship **GPT-5.6 engine**, while providing an automated fallback route to an alternative inference engine pulling from encrypted server vaults.
 
+## Live demo
+Public Streamlit app: [https://babydollai.streamlit.app](https://babydollai.streamlit.app)
+
+The public Groq path uses `llama-3.3-70b-versatile` (JSON object mode) and falls back if Groq rejects JSON mode or a model is retired. Streamlit secrets should define `GROQ_API_KEY`. `OPENAI_API_KEY` is optional for the GPT-5.6 backbone.
+
 ## Platform Local Setup
 To run this application locally or verify the environment:
 1. Clone the repository and install dependencies: `pip install -r requirements.txt`
-2. Ensure your secret environment tokens are securely mapped within your host secrets infrastructure.
+2. Ensure your secret environment tokens are securely mapped within your host secrets infrastructure (`GROQ_API_KEY`, optional `OPENAI_API_KEY`).
 3. Execute the UI deployment: `streamlit run app.py`
+4. Run unit tests: `python -m unittest test_analysis.py`
